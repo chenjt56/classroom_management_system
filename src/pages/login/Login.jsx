@@ -20,13 +20,9 @@ export default class Login extends Component {
   }
 
   handleSubmit = (values) => {
-    let { password, username } = values;
-    password = md5(password);
-    axios.get('/login', {
-      params: {
-        username,
-        password
-      }
+    axios.post('/user/sign-in', {
+      passprot: values.userName,
+      password: values.password
     }).then(() => {
       this.props.history.replace("/home");
     }).catch(error => {
